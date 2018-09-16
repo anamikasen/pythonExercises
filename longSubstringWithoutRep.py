@@ -2,21 +2,18 @@ str = input("Enter string ")
 
 visited = set([])
 count_list = []
-count = 0
 for i in range(len(str)):
-    if str[i] in visited:
-        if str[i-1] is not None and len(visited)==1:
-            count_list.append(1)
+    visited.add(str[i])
+    count = 1
+    flag = True
+    k = i+1
+    while flag is True and k <=len(str)-1:
+        if str[k] not in visited:
+            visited.add(str[k])
+            count+=1
+            k+=1
         else:
             visited = set([])
-            visited.add(str[i])
-            count_list.append(count)
-            count = 1
-    else:
-        visited.add(str[i])
-        count+=1
-    print(count_list, count, visited)
-count_list.append(count)
-print(count_list)
+            flag = False
+    count_list.append(count)
 print(max(count_list))
-print(type(str))
